@@ -10,7 +10,7 @@ remont_choices = (
 
 class Post(models.Model):
     Author = models.ForeignKey(User, on_delete=models.CASCADE,)
-    post_image = models.CharField(max_length=255)
+    post_image = models.ImageField(upload_to='images/', blank=True, null=True)
     xona_soni = models.IntegerField()
     manzil = models.CharField(max_length=255)
     narx = models.IntegerField() # oldida sum tursin 

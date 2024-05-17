@@ -7,8 +7,26 @@ from .serializers import PostSerializer
 from .permissions import PostUserOrReadOnly
 from rest_framework.permissions import SAFE_METHODS, IsAuthenticatedOrReadOnly, BasePermission, IsAdminUser, DjangoModelPermissions
 # for swagger
-
-
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+from django.shortcuts import render
+# Create a common schema view configuration
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Your Project API",
+        default_version='v1',
+        description="Test description",
+        terms_of_service="https://www.google.com/policies/terms/",
+        contact=openapi.Contact(email="contact@yourproject.local"),
+        license=openapi.License(name="BSD License"),
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,),
+)
+# Custom view to handle dynamic URL
+def dynamic_swagger_view(request, pk=None):
+    return schema_view.with_ui('swagger', cache_timeout=0)(request)
 
 # end swagger
 
