@@ -6,8 +6,11 @@ from rest_framework import status
 from .serializers import PostSerializer
 from .permissions import PostUserOrReadOnly
 from rest_framework.permissions import SAFE_METHODS, IsAuthenticatedOrReadOnly, BasePermission, IsAdminUser, DjangoModelPermissions
+# for swagger
 
 
+
+# end swagger
 
 # class HomeView(generics.ListAPIView):
 #     serializer_class = PostSerializer
@@ -45,4 +48,4 @@ class HomeView(APIView): #PostListView
 class PostDetailView(generics.RetrieveUpdateDestroyAPIView):  #, PostUserOrReadOnly):
     #permission_classes = [PostUserOrReadOnly]
     queryset = Post.objects.all()
-    serializer_class = PostSerializer    
+    serializer_class = PostSerializer
